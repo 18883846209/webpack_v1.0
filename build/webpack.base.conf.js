@@ -13,18 +13,17 @@ module.exports = {
 	// 	index: './src/index.js'
 	// },
 	entry: utils.entries(),
+	devtool: 'inline-source-map',
 	output: {
 		path: config.build.assetsRoot,
 		filename: '[name].js',
 		publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
 	},
 	resolve: {
-		extensions: ['.js', '.json'],
+		extensions: ['.js', '.json', '.ts', '.tsx'],
 		alias: {
 			'@': resolve('src')
-		},
-		mainFields: ['jsnext:main', 'main'], //TODO:可能会有问题  让webpack先使用jsnext:main字段，在没有时使用main字段。这样就可以优化支持tree-shaking的库。
-		modules: [path.resolve('node_modules')]
+		}
 	},
 	module: {
 		rules: [{
@@ -32,14 +31,22 @@ module.exports = {
 				loader: 'eslint-loader',
 				enforce: 'pre',
 				include: resolve('src'),
+				exclude: /node_modules/,
 				options: {
 					formatter: require('eslint-friendly-formatter')
 				}
 			},
 			{
 				test: /\.js$/,
-				loader: 'babel-loader?cacheDirectory=true',
-				include: resolve('src')
+				loader: 'babel-loader?cacheDirectory=true', // 开启缓存
+				include: resolve('src'),
+				exclude: /node_modules/
+			},
+			{
+				test: /\.tsx?$/,
+				loader: 'ts-loader',
+				include: resolve('src'),
+				exclude: /node_modules/
 			},
 			{
 				test: /\.(woff2?|eot|ttf|otf|png|jpe?g|gif|svg)(\?.*)?$/,
@@ -47,18 +54,19 @@ module.exports = {
 				options: {
 					limit: 10000,
 					name: utils.assetsPath('img/[name].[hash:7].[ext]')
-				}
+				},
 			},
 			{
 				test: /\.html$/,
 				loader: "html-loader",
 				options: {
 					ignoreCustomFragments: [/\{\{.*?}}/],
+					// root: path.resolve(__dirname, '../dist/static/img'),
+					// publicPath: '../',
 					attrs: ['img:src', 'link:href']
 				}
 			}
-		],
-		noParse: /node_modules\/(jquey|moment|chart\.js)/
+		]
 	},
 	plugins: [
 		new webpack.ProvidePlugin({

@@ -18,20 +18,21 @@ module.exports = {
 		// `npm run build --report`
 		// Set to `true` or `false` to always turn it on or off
 		bundleAnalyzerReport: process.env.npm_config_report,
-		htmlFtp:{
-			host:'118.190.25.113',
-			port:256,
-			user:'ftpcoco',
-			password:'killers1Y'
-		},
-		staticAssetsFtp:{
-			host:'118.190.25.113',
-			port:256,
-			user:'ftpcoco',
-			password:'killers1Y'
-		},
-		directoryName:'htmlwebpack',
-		assetsPublicPath: 'https://mobile.51wnl.com/htmlwebpack/'
+		assetsPublicPath: './'		
+		// htmlFtp:{
+		// 	host:'118.190.25.113',
+		// 	port:256,
+		// 	user:'ftpcoco',
+		// 	password:'killers1Y'
+		// },
+		// staticAssetsFtp:{
+		// 	host:'118.190.25.113',
+		// 	port:256,
+		// 	user:'ftpcoco',
+		// 	password:'killers1Y'
+		// },
+		// directoryName:'htmlwebpack',
+		// assetsPublicPath: 'https://mobile.51wnl.com/htmlwebpack/'
 	},
 	dev: {
 		env: require('./dev.env'),
