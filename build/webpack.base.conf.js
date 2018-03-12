@@ -43,7 +43,7 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
-				test: /\.tsx?$/,
+				test: /\.tsx?$/, // typescript配置
 				loader: 'ts-loader',
 				include: resolve('src'),
 				exclude: /node_modules/
