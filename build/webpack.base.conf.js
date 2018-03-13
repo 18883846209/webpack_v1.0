@@ -10,7 +10,7 @@ function resolve(dir) {
 
 module.exports = {
 	// entry: {
-	// 	index: './src/index.js'
+	// 	index: './src/main.js'
 	// },
 	entry: utils.entries(),
 	devtool: 'inline-source-map',
@@ -37,7 +37,11 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.js$/,
+				test: /\.vue$/,
+				use: ['vue-loader'],
+			},
+			{
+				test: /\.jsx?$/,
 				loader: 'babel-loader?cacheDirectory=true', // 开启缓存
 				include: resolve('src'),
 				exclude: /node_modules/
