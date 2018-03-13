@@ -9,10 +9,10 @@ function resolve(dir) {
 }
 
 module.exports = {
-	// entry: {
-	// 	index: './src/main.js'
-	// },
-	entry: utils.entries(),
+	entry: {
+		index: './src/main.js'
+	},
+	// entry: utils.entries(),
 	devtool: 'inline-source-map',
 	output: {
 		path: config.build.assetsRoot,
@@ -44,6 +44,9 @@ module.exports = {
 				test: /\.jsx?$/,
 				loader: 'babel-loader?cacheDirectory=true', // 开启缓存
 				include: resolve('src'),
+				query: {
+                    presets: ['react']
+                },
 				exclude: /node_modules/
 			},
 			{
