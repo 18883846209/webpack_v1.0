@@ -13,7 +13,7 @@ module.exports = {
 		index: './src/main.js'
 	},
 	// entry: utils.entries(),
-	devtool: 'inline-source-map',
+	// devtool: 'inline-source-map',
 	output: {
 		path: config.build.assetsRoot,
 		filename: '[name].js',
@@ -35,10 +35,6 @@ module.exports = {
 				options: {
 					formatter: require('eslint-friendly-formatter')
 				}
-			},
-			{
-				test: /\.vue$/,
-				use: ['vue-loader'],
 			},
 			{
 				test: /\.jsx?$/,
