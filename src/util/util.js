@@ -83,10 +83,15 @@ function queryStringToJson(urlStr) {
 	let requestObj = {};
 	if (searchStrStart !== 0) {
 		let partsArr = searchStr.split('&');
-		for (let i = 0; i < partsArr.length; i += 1) {
-			let minArr = partsArr[i].split('=');
+		// for (let i = 0; i < partsArr.length; i += 1) {
+		// 	let minArr = partsArr[i].split('=');
+		// 	requestObj[minArr[0]] = minArr[1]; // eslint-disable-line
+		// }
+		let minArr;
+		partsArr.forEach(key => {
+			minArr = key.split('=');
 			requestObj[minArr[0]] = minArr[1]; // eslint-disable-line
-		}
+		})
 	}
 	if (Object.getOwnPropertyNames(requestObj).length === 0) return false;//判断是否有参数
 	return requestObj;
