@@ -76,6 +76,22 @@ function jsonToQueryString(json) {
 	return ('?' + Object.keys(json).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(json[key])).join('&'));
 }
 
+function queryStringToJson(urlStr) {
+	if (urlStr.indexOf('http') !== 0) return false;
+	let searchStrStart = urlStr.indexOf('?') + 1;
+	let searchStr = urlStr.substring(searchStrStart, urlStr.length); //获取url中"?"符后的字串参数
+	let requestObj = {};
+	if (searchStrStart !== 0) {
+		let partsArr = searchStr.split('&');
+		for (let i = 0; i < partsArr.length; i += 1) {
+			let minArr = partsArr[i].split('=');
+			requestObj[minArr[0]] = minArr[1]; // eslint-disable-line
+		}
+	}
+	if (Object.getOwnPropertyNames(requestObj).length === 0) return false;//判断是否有参数
+	return requestObj;
+}
+
 function formatNumber(n) {
 	n = n.toString();
 	return n[1] ? n : '0' + n;
@@ -235,6 +251,7 @@ const util = {
 	isEmptyObject,
 	isPromise,
 	jsonToQueryString,
+	queryStringToJson,
 	formatNumber,
 	formatDate,
 	str2Int,
