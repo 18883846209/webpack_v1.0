@@ -14,11 +14,6 @@
     "precommitmsg",
     "eslint"
   ],
-  "repository": {
-    "type": "git",
-    "url": "ssh://guojinhai@192.168.1.80:29418/~guojinhai/html_webpack.git"
-  },
-  "author": "gjh",
   "license": "ISC",
   "dependencies": {
     "extract-text-webpack-plugin": "^3.0.2",
